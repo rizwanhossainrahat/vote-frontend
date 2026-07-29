@@ -79,7 +79,7 @@ export default function WinnerCard({ winner }: WinnerCardProps) {
           className="flex items-center justify-center gap-2 text-green-300 mt-2 text-sm"
         >
           <FiUser size={14} />
-          <span>আব্দুল মতিন — পানির কলস</span>
+          <span>আব্দুল মতিন — কলসি মার্কা</span>
         </motion.div>
 
         {/* Decorative stars */}

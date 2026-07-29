@@ -64,6 +64,7 @@ export default function Draw() {
       {/* Animated background orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
+        
           animate={{ x: [0, 50, 0], y: [0, 30, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 8, repeat: Infinity }}
           className="absolute top-20 left-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl"
@@ -99,11 +100,12 @@ export default function Draw() {
           ))}
       </AnimatePresence>
 
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-20">
+      <div style={{marginTop:"60px"}} className="relative max-w-3xl mx-auto px-4 sm:px-6 py-20">
         {/* Header */}
         <SectionTitle
+        
           title="লটারি ড্র"
-          subtitle="🏺 পানির কলস রিওয়ার্ড ক্যাম্পেইন — বিজয়ী নির্বাচন"
+          subtitle="🏺 কলসি মার্কা রিওয়ার্ড ক্যাম্পেইন — বিজয়ী নির্বাচন"
           light
         />
 
@@ -114,6 +116,49 @@ export default function Draw() {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center gap-8"
         >
+           {/* No participants state */}
+          <AnimatePresence>
+            {noParticipants && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-2xl p-8 text-center max-w-sm"
+              >
+                <div className="text-5xl mb-3">😔</div>
+                <h3 className="text-white font-bold text-xl mb-2">No participants available.</h3>
+                <p className="text-gray-400 text-sm">
+                  এখনো কোনো অংশগ্রহণকারী নেই। প্রথমে রিওয়ার্ড ক্যাম্পেইনে অংশ নিন।
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Winner card */}
+          <AnimatePresence mode="wait">
+            {winner && !noParticipants && (
+              <motion.div
+                key={`winner-${drawCount}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="w-full max-w-sm"
+              >
+                <WinnerCard winner={winner} />
+
+                {/* Draw again prompt */}
+                {/* <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="text-center text-gray-400 text-sm mt-6"
+                >
+                  নতুন বিজয়ী নির্বাচন করতে আবার বাটন চাপুন ↑
+                </motion.p> */}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Big draw button */}
           <div className="relative">
             {/* Pulse ring */}
@@ -162,59 +207,19 @@ export default function Draw() {
             </motion.div>
           )}
 
-          {/* Or use regular button */}
+          {/* draw button Or use regular button */}
           <Button
+           
             onClick={handleDraw}
             loading={loading}
             disabled={loading}
             size="lg"
-            className="bg-gradient-to-r from-amber-500 to-amber-600 border-amber-500 shadow-amber-300 hover:from-amber-600 hover:to-amber-700"
+            className=" bg-gradient-to-r from-amber-500 to-amber-600 border-amber-500 shadow-amber-300 hover:from-amber-600 hover:to-amber-700"
           >
             🎉 Draw Winner
           </Button>
 
-          {/* No participants state */}
-          <AnimatePresence>
-            {noParticipants && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-2xl p-8 text-center max-w-sm"
-              >
-                <div className="text-5xl mb-3">😔</div>
-                <h3 className="text-white font-bold text-xl mb-2">No participants available.</h3>
-                <p className="text-gray-400 text-sm">
-                  এখনো কোনো অংশগ্রহণকারী নেই। প্রথমে রিওয়ার্ড ক্যাম্পেইনে অংশ নিন।
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Winner card */}
-          <AnimatePresence mode="wait">
-            {winner && !noParticipants && (
-              <motion.div
-                key={`winner-${drawCount}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="w-full max-w-sm"
-              >
-                <WinnerCard winner={winner} />
-
-                {/* Draw again prompt */}
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="text-center text-gray-400 text-sm mt-6"
-                >
-                  নতুন বিজয়ী নির্বাচন করতে আবার বাটন চাপুন ↑
-                </motion.p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+         
         </motion.div>
 
         {/* Info cards */}
@@ -225,6 +230,7 @@ export default function Draw() {
             { icon: '🎯', title: 'র‍্যান্ডম', desc: 'সম্পূর্ণ র‍্যান্ডম প্রক্রিয়ায় বিজয়ী নির্বাচন।' },
           ].map((item, i) => (
             <motion.div
+            style={{marginTop:"10px",paddingRight:"5px"}}
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
