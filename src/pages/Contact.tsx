@@ -1,14 +1,9 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
+
 import { motion } from 'framer-motion';
-import { FiUser, FiMail, FiMessageSquare, FiSend, FiPhone, FiMapPin } from 'react-icons/fi';
-import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
-import type { ContactFormValues } from '../types';
+import {  FiPhone, FiMapPin } from 'react-icons/fi';
+import { FaFacebook} from 'react-icons/fa';
+
 import SectionTitle from '../components/SectionTitle';
-import Input from '../components/Input';
-import Card from '../components/Card';
-import Button from '../components/Button';
 
 const contactInfo = [
   {
@@ -21,33 +16,12 @@ const contactInfo = [
   {
     icon: <FiMapPin className="text-2xl" />,
     label: 'ঠিকানা',
-    value: 'বাংলাদেশ',
+    value: 'মতিন স্টিকার হাউস,নয়াবাজার',
     color: 'from-amber-500 to-amber-700',
   },
 ];
 
 export default function Contact() {
-  const [submitting, setSubmitting] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ContactFormValues>();
-
-  const onSubmit = (_data: ContactFormValues) => {
-    setSubmitting(true);
-    // Frontend-only: simulate submission
-    setTimeout(() => {
-      toast.success('আপনার বার্তা সফলভাবে পাঠানো হয়েছে!', {
-        description: 'আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।',
-        duration: 5000,
-      });
-      reset();
-      setSubmitting(false);
-    }, 1500);
-  };
 
   return (
     <div className="pt-20">

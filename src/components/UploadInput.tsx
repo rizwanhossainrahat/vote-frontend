@@ -7,6 +7,7 @@ interface UploadInputProps {
   error?: string;
   registration: UseFormRegisterReturn;
   onChange?: (files: FileList | null) => void;
+  
 }
 
 export default function UploadInput({
@@ -14,6 +15,7 @@ export default function UploadInput({
   error,
   registration,
   onChange,
+ 
 }: UploadInputProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
@@ -34,6 +36,7 @@ export default function UploadInput({
   const handleClear = () => {
     setPreview(null);
     setFileName(null);
+    
     if (inputRef.current) inputRef.current.value = '';
   };
 

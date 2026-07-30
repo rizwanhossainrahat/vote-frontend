@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaFacebook } from 'react-icons/fa';
 
 export default function Footer() {
   const year = new Date().getFullYear();

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiDownload } from 'react-icons/fi';
+import banner from "../assets/banner.jpeg";
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -11,6 +12,8 @@ const navLinks = [
   { label: 'Contact', to: '/contact' },
 ];
 
+
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -18,6 +21,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -33,25 +37,35 @@ export default function Navbar() {
           : 'bg-transparent',
       ].join(' ')}
     >
-      <div  className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center text-white text-lg font-bold shadow-md group-hover:scale-105 transition-transform">
               🏺
             </div>
+
             <div>
-              <p className={`font-bold text-base leading-tight transition-colors ${scrolled ? 'text-green-800' : 'text-white'}`}>
+              <p
+                className={`font-bold text-base leading-tight transition-colors ${
+                  scrolled ? 'text-green-800' : 'text-white'
+                }`}
+              >
                 আব্দুল মতিন
               </p>
-              <p className={`text-xs leading-tight transition-colors ${scrolled ? 'text-gray-500' : 'text-green-200'}`}>
+
+              <p
+                className={`text-xs leading-tight transition-colors ${
+                  scrolled ? 'text-gray-500' : 'text-green-200'
+                }`}
+              >
                 কলসি মার্কায় ভোট দিন
               </p>
             </div>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
               <NavLink
                 key={link.to}
@@ -59,7 +73,7 @@ export default function Navbar() {
                 end={link.to === '/'}
                 className={({ isActive }) =>
                   [
-                    ' px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200',
+                    'px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200',
                     isActive
                       ? 'bg-green-600 text-white shadow-md'
                       : scrolled
@@ -71,13 +85,26 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
+
+            {/* Download Button */}
+            <a
+              href={banner}
+              download
+              style={{padding:"5px"}}
+              className=" ml-2 inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-md transition-all duration-200"
+            >
+              <FiDownload size={16} />
+              Download Banner
+            </a>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className={`md:hidden p-2 rounded-lg transition ${
-              scrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/20'
+              scrolled
+                ? 'text-gray-700 hover:bg-gray-100'
+                : 'text-white hover:bg-white/20'
             }`}
           >
             {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -85,7 +112,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -95,7 +122,7 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
             className="md:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden"
           >
-            <div className="px-4 py-4 flex flex-col gap-1">
+            <div className="px-4 py-4 flex flex-col gap-2">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.to}
@@ -114,6 +141,17 @@ export default function Navbar() {
                   {link.label}
                 </NavLink>
               ))}
+
+              {/* Mobile Download Button */}
+              <a
+                href={banner}
+                download
+                onClick={() => setMenuOpen(false)}
+                className="mt-3 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-xl font-semibold transition"
+              >
+                <FiDownload size={18} />
+                Download Banner
+              </a>
             </div>
           </motion.div>
         )}

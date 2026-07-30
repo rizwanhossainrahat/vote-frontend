@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
-import { FiUser, FiPhone, FiSend } from 'react-icons/fi';
+import {  FiSend } from 'react-icons/fi';
 import type { RewardFormValues } from '../types';
 import { validateImageFile } from '../utils';
 import SectionTitle from '../components/SectionTitle';
@@ -23,6 +23,7 @@ const BACKEND_URL = 'https://vote-backend-fn18.onrender.com';
 
 export default function Reward() {
   const [submitting, setSubmitting] = useState(false);
+  const [uploadKey, setUploadKey] = useState(0);
 
   const {
     register,
@@ -34,6 +35,7 @@ export default function Reward() {
   const onSubmit = async (data: RewardFormValues) => {
     // Validate image client-side first
     const file = data.screenshot?.[0];
+    console.log("reward",file)
     if (!file) {
       toast.error('স্ক্রিনশট আবশ্যক');
       return;
@@ -66,6 +68,9 @@ export default function Reward() {
         duration: 5000,
       });
       reset();
+
+      // Reset UploadInput
+    setUploadKey((prev) => prev + 1);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Something went wrong';
       toast.error(message);
@@ -199,6 +204,7 @@ export default function Reward() {
 
                 {/* Screenshot upload */}
                 <UploadInput
+                key={uploadKey}
                   label="ফেসবুক শেয়ারের স্ক্রিনশট"
                   registration={register('screenshot', {
                     required: 'স্ক্রিনশট আবশ্যক',
@@ -208,6 +214,7 @@ export default function Reward() {
                     },
                   })}
                   error={errors.screenshot?.message}
+                 
                 />
 
                 {/* Submit */}

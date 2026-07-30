@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FiArrowRight, FiCheckCircle, FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
+import { FiArrowRight, FiCheckCircle, FiPhone,  FiMapPin } from 'react-icons/fi';
 import { FaFacebook } from 'react-icons/fa';
 import SectionTitle from '../components/SectionTitle';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import heroImg from '../assets/hero.png';
+import banner from '../assets/banner.jpeg';
 
 
 
@@ -124,18 +125,20 @@ export default function Home() {
 
               {/* CTA buttons */}
               <motion.div
+              style={{marginBottom:"5px"}}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
                 className="flex flex-wrap gap-4"
               >
                 <Link to="/about">
+                
                   <Button size="lg" variant="primary">
                     আরও জানুন <FiArrowRight />
                   </Button>
                 </Link>
                 <Link to="/reward">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-800">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-black hover:text-green-800">
                     🎁 Reward Campaign
                   </Button>
                 </Link>
@@ -173,7 +176,7 @@ export default function Home() {
                   <img
                     src={heroImg}
                     alt="আব্দুল মতিন"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full "
                     onError={(e) => {
                       const target = e.currentTarget;
                       target.style.display = 'none';
@@ -323,9 +326,24 @@ export default function Home() {
 >
    
    Facebook Post
-</a></span> টি শেয়ার করুন এবং অংশগ্রহণ করুন।
+</a></span> টি শেয়ার করুন অথবা  <span><a
+  href={banner}
+  download
+  
+  rel="noopener noreferrer"
+  className='underline text-red-700'
+>
+   
+   ব্যানারটি ডাউনলোড
+</a></span>  করে আপনার ফেসবুক থেকে পোস্ট করুন এবং পোস্টের স্ক্রিনশটসহ আপনার নাম ও মোবাইল নম্বর নিচের ফর্মে জমা দিন।
 
-আপনার জন্য অপেক্ষা করছে দারুণ সব চমক!</p>
+ </p>
+<p>📢 প্রতিদিন রাত ৮টায় লটারির ড্র অনুষ্ঠিত হবে।
+
+🏆 প্রতিদিন একজন সৌভাগ্যবান বিজয়ীকে আকর্ষণীয় পুরস্কার প্রদান করা হবে।
+
+📍 স্থান: মতিন স্টিকার হাউস
+🕗 সময়: প্রতিদিন রাত ৮:০০টা</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link style={{padding:"20px"}} to="/reward">
                 <Button  className="bg-black text-green-800 hover:bg-green-50 border-white ">
