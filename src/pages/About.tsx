@@ -3,6 +3,7 @@ import { FiBook, FiUser, FiTarget, FiStar } from 'react-icons/fi';
 import SectionTitle from '../components/SectionTitle';
 
 import hero from '../assets/hero.png'
+import { Link } from 'react-router-dom';
 
 const education = [
   { year: '১৯৯৫', degree: 'প্রাথমিক শিক্ষা', school: 'স্থানীয় সরকারি প্রাথমিক বিদ্যালয়' },
@@ -150,6 +151,15 @@ export default function About() {
               </motion.div>
             ))}
           </div>
+
+         <Link
+         style={{margin:"20px",padding:"10px"}}
+  to="/draw"
+  className="inline-flex items-center justify-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition duration-200"
+>
+  🎉 Draw Winner
+</Link>
+
         </div>
       </section>
     </div>

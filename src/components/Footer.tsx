@@ -78,9 +78,11 @@ export default function Footer() {
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-400">
           <p>© {year} আব্দুল মতিন -কলসি মার্কায় ভোট দিন. All rights reserved.</p>
           <p className="flex items-center gap-1">
-            Made with <span className="text-red-400">♥</span> for Bangladesh
+            Made by Rizwan Hossain Rahat 
           </p>
+         <p>Contact:+8801861738648</p>
         </div>
+         
       </div>
     </footer>
   );

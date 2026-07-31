@@ -21,6 +21,7 @@ const steps = [
 
 const BACKEND_URL = 'https://vote-backend-fn18.onrender.com';
 
+
 export default function Reward() {
   const [submitting, setSubmitting] = useState(false);
   const [uploadKey, setUploadKey] = useState(0);
@@ -131,7 +132,7 @@ export default function Reward() {
             ))}
           </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"> 
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"> 
               <motion.div
                 style={{marginTop:"20px"}}
                 initial={{ opacity: 0, y: 30 }}
@@ -159,7 +160,7 @@ export default function Reward() {
     ></iframe>
   </div>
               </motion.div>
-          </div>
+          </div> */}
 
         </div>
       </section>
